@@ -242,9 +242,9 @@ function createWindow () {
   checkConfig()
   // Create the browser window.
   if (!config.store.devMode) {
-    mainWindow = new BrowserWindow({ width: 850, height: 570, backgroundColor: '#f0f0f0' })
+    mainWindow = new BrowserWindow({ width: 850, height: 570, backgroundColor: '#f0f0f0', webPreferences: { nodeIntegration: true } })
   } else {
-    mainWindow = new BrowserWindow({ width: 850, height: 600, backgroundColor: '#f0f0f0' })
+    mainWindow = new BrowserWindow({ width: 850, height: 600, backgroundColor: '#f0f0f0', webPreferences: { nodeIntegration: true } })
   }
   if (config.store.showMenu) {
     Menu.setApplicationMenu(menu)
@@ -327,7 +327,7 @@ function createConfig () {
 
 function printData (formatInformation, printInformation, printImmediately, last = false) {
   let winPrint = null
-  winPrint = new BrowserWindow({ width: 899, height: 900, show: false })
+  winPrint = new BrowserWindow({ width: 899, height: 900, show: false, webPreferences: { nodeIntegration: true } })
   winPrint.loadURL(url.format({
     pathname: path.join(__dirname, 'html/print.html'),
     protocol: 'file:',
@@ -404,7 +404,7 @@ ipcMain.on('readyToPrint', function (event, formatInformation, printImmediately,
 
 // creates the manualSignaturesWindow
 function createManualSignaturesWindow (objMan, edit) {
-  manualSignaturesWindow = new BrowserWindow({ width: 650, height: 420, show: false })
+  manualSignaturesWindow = new BrowserWindow({ width: 650, height: 420, show: false, webPreferences: { nodeIntegration: true } })
   manualSignaturesWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'html/manual.html'),
     protocol: 'file',
@@ -418,7 +418,7 @@ function createManualSignaturesWindow (objMan, edit) {
 
 // creates the configWindow
 function createConfigWindow () {
-  configWindow = new BrowserWindow({ width: 800, height: 950, show: false })
+  configWindow = new BrowserWindow({ width: 800, height: 950, show: false, webPreferences: { nodeIntegration: true } })
   configWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'html/config.html'),
     protocol: 'file',
@@ -431,7 +431,7 @@ function createConfigWindow () {
 
 // creates the editorConfig
 function createEditorWindow (formatName = '', nrOfLines = '') {
-  editorWindow = new BrowserWindow({ width: 800, height: 950, show: false })
+  editorWindow = new BrowserWindow({ width: 800, height: 950, show: false, webPreferences: { nodeIntegration: true } })
   editorWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'html/editor.html'),
     protocol: 'file',
