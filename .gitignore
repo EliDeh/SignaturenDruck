@@ -4,3 +4,5 @@ signaturenDruck/dist*
 signaturenDruck/tmp*
 .vscode
 notes
+signaturenDruck/v2_node_modules*
+signaturenDruck/v5_node_modules*
