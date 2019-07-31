@@ -19,19 +19,19 @@
   "license": "CC BY",
   "devDependencies": {
     "electron": "^5.0.8",
-    "electron-builder": "^20.44.4",
+    "electron-builder": "^21.1.5",
     "electron-rebuild": "^1.8.5"
   },
   "dependencies": {
-    "electron-context-menu": "^0.10.1",
-    "electron-store": "^2.0.0",
+    "electron-context-menu": "^0.13.0",
+    "electron-store": "^4.0.0",
     "font-manager": "^0.3.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "node-cmd": "^3.0.0",
-    "node-powershell": "^3.3.1",
+    "node-powershell": "^4.0.0",
     "sweetalert2": "^8.14.0",
-    "username": "^4.1.0",
+    "username": "^5.1.0",
     "xml2json": "^0.11.2",
     "xregexp": "^4.2.4"
   }
