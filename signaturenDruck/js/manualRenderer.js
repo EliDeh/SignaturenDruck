@@ -281,9 +281,39 @@ function toggleIndent () {
   }
 }
 
+function fixLineBreak (eventKey) {
+  let line = document.activeElement
+  let curPos = line.selectionStart
+  let part1 = line.value.substr(0, curPos)
+  let part2 = line.value.substr(curPos)
+  let curLineNr = line.id.split('_')[1]
+  let nextLineNr = Number(curLineNr) + 1
+  let prevLineNr = Number(curLineNr) - 1
+  if (eventKey === 'Enter') {
+    if (document.getElementById('inputLine_' + nextLineNr)) {
+      line.value = part1
+      document.getElementById('inputLine_' + nextLineNr).value = part2 + document.getElementById('inputLine_' + nextLineNr).value
+    }
+  } else {
+    if (curLineNr > 1) {
+      line.value = part2
+      document.getElementById('inputLine_' + prevLineNr).value = document.getElementById('inputLine_' + prevLineNr).value + part1
+    }
+  }
+}
+
+function lineSplit (event) {
+  if (event.altKey) {
+    if (event.key === 'Backspace' || event.key === 'Enter') {
+      fixLineBreak(event.key)
+    }
+  }
+}
+
 document.getElementById('btn_next').addEventListener('click', next)
 document.getElementById('btn_previous').addEventListener('click', previous)
 document.getElementById('btn_delete').addEventListener('click', deleteData)
 document.getElementById('btn_deleteAndExit').addEventListener('click', deleteAndExit)
 document.getElementById('btn_saveAndExit').addEventListener('click', saveAndExit)
 document.getElementById('chkbx_removeIndent').addEventListener('change', toggleIndent)
+document.addEventListener('keydown', lineSplit)
