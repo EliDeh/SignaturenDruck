@@ -302,10 +302,19 @@ function fixLineBreak (eventKey) {
   }
 }
 
+function refresh (numberOfLines) {
+  for (let i = 1; i <= numberOfLines; i++) {
+    let input = document.getElementById('inputLine_' + i)
+    let line = document.getElementById('line_' + i)
+    line.innerHTML = input.value
+  }
+}
+
 function lineSplit (event) {
   if (event.altKey) {
     if (event.key === 'Backspace' || event.key === 'Enter') {
       fixLineBreak(event.key)
+      refresh(getFormatSelected().lines)
     }
   }
 }
