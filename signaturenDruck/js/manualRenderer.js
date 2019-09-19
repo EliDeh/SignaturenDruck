@@ -281,6 +281,7 @@ function toggleIndent () {
   }
 }
 
+// returns the inital curPos of the cursor
 function fixLineBreak (eventKey) {
   let line = document.activeElement
   let curPos = line.selectionStart
@@ -289,17 +290,20 @@ function fixLineBreak (eventKey) {
   let curLineNr = line.id.split('_')[1]
   let nextLineNr = Number(curLineNr) + 1
   let prevLineNr = Number(curLineNr) - 1
-  if (eventKey === 'Enter') {
+  if (eventKey === 'Enter') { // move everything after curPos to the start of the next Line
     if (document.getElementById('inputLine_' + nextLineNr)) {
       line.value = part1
       document.getElementById('inputLine_' + nextLineNr).value = part2 + document.getElementById('inputLine_' + nextLineNr).value
     }
-  } else {
+  } else if (eventKey === 'Backspace') { // move everything before curPos to the end the previous line
     if (curLineNr > 1) {
       line.value = part2
       document.getElementById('inputLine_' + prevLineNr).value = document.getElementById('inputLine_' + prevLineNr).value + part1
     }
+  } else { // add a nbsp at curPos
+    line.value = part1 + '&nbsp;' + part2
   }
+  return curPos
 }
 
 function refresh (numberOfLines) {
@@ -312,9 +316,10 @@ function refresh (numberOfLines) {
 
 function lineSplit (event) {
   if (event.altKey) {
-    if (event.key === 'Backspace' || event.key === 'Enter') {
-      fixLineBreak(event.key)
-      refresh(getFormatSelected().lines)
+    if (event.key === 'Backspace' || event.key === 'Enter' || event.key === 'l') {
+      let curPos = fixLineBreak(event.key) // fix the lineBreak, get the initial curPos
+      refresh(getFormatSelected().lines) // refresh the lines & preview
+      document.activeElement.selectionStart = document.activeElement.selectionEnd = curPos // keep the cursor at the previous position if possible
     }
   }
 }
