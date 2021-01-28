@@ -18,7 +18,7 @@
   "author": "Elias Dehler",
   "license": "CC BY",
   "devDependencies": {
-    "electron": "^2.0.18",
+    "electron": "^9.4.0",
     "electron-builder": "^20.44.4",
     "electron-rebuild": "^1.8.5"
   },
