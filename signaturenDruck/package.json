@@ -26,7 +26,7 @@
     "electron-context-menu": "^0.10.1",
     "electron-store": "^2.0.0",
     "font-manager": "^0.3.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "node-cmd": "^3.0.0",
     "node-powershell": "^3.3.1",
